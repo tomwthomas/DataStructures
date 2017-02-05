@@ -21,7 +21,7 @@ public class DataStructures
         HTDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
 //        Lookup Pat Jones
 //        Lookup Billy Kidd
-//        Delete John Doe
+        HTDS.removeEntry("John", "Doe");
 //        Insert Test Case 555-235-1121 Test_Case@testcase.com
 //        Insert Nadezhda Kanachekhovskaya 555-235-1122 dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru
 //        Insert Jo Wu 555-235-1123 wu@h.com

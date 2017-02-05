@@ -38,7 +38,38 @@ public class HashTableDataStructure {
 
     // This method removes an entry from the hashtable based on the first and last name (key) submitted.  If there is a chain of buckets at the key, it adjusts the chain accordingly.
     public void removeEntry(String firstName, String lastName) {
+        // get the key of the data to be inserted
+        String key = generateKey(firstName, lastName);
 
+        // get the key index based on the key
+        int index = getKeyIndex(key);
+
+        // check the hash location in the phoneEntries object so see if there is an entry here or not
+        if(phoneEntries[index] != null) { // found a potential match, check and if so remove it, otherwise traverse chain until end or a match is detected
+            System.out.println("found a potential key match");
+            // check to see if the current node is the key I'm looking for
+            if(phoneEntries[index].getKey() == key) {
+                System.out.println("found a matching key");
+                if(phoneEntries[index].getNextNode() != null) {
+                    System.out.println("this entry has a chain after it");
+                }
+                else {
+                    phoneEntries[index] = null;
+                    System.out.println("removed entry - had no chain");
+                }
+            }
+            // if so, check if it has a chain following it
+                // if there is a chain, move the first entry in the chain to the head of the list
+                // if there is no chain then simply null this entry and null the node itself so as to free memory
+            // else, we found an entry but not the right key so check the next entry in the chain
+                // potential recursion based on the if above at this point!!!
+
+        }
+        else { // since we don't yet have an entry here, then add this new entry as a new node
+           // System.out.println("found an empty spot!");
+            //phoneEntries[index] = newNode;
+            //System.out.println("added new bucket:" + phoneEntries[index].getValue().getFirstName());
+        }
     }
 
     private String generateKey(String firstName, String lastName) {
