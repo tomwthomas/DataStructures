@@ -5,17 +5,20 @@ public class DataStructures
 
         System.out.println("hello world!");
 
+        // instantiate Hash Table Data Structure object
+        HashTableDataStructure HTDS = new HashTableDataStructure();
+
         // TWT:  Begin test cases for Hash Table Data Structure (HTDS)
-//        Insert Bob Smith 555-235-1111 bsmith@somewhere.com
-//        Insert Jane Williams 555-235-1112 jw@something.com
-//        Insert Mohammed al-Salam 555-235-1113 mas@someplace.com
-//        Insert Pat Jones 555-235-1114 pjones@homesweethome.com
-//        Insert Billy Kidd 555-235-1115 billy_the_kid@nowhere.com
-//        Insert H. Houdini 555-235-1116 houdini@noplace.com
-//        Insert Jack Jones 555-235-1117 jjones@hill.com
-//        Insert Jill Jones 555-235-1118 jillj@hill.com
-//        Insert John Doe 555-235-1119 jdoe@somedomain.com
-//        Insert Jane Doe 555-235-1120 jdoe@somedomain.com
+        HTDS.addEntry("Bob", "Smith", "555-235-1111", "bsmith@somewhere.com");
+        HTDS.addEntry("Jane", "Williams", "555-235-1112", "jw@something.com");
+        HTDS.addEntry("Mohammed", "al-Salam", "555-235-1113", "mas@someplace.com");
+        HTDS.addEntry("Pat", "Jones", "555-235-1114", "pjones@homesweethome.com");
+        HTDS.addEntry("Billy", "Kidd", "555-235-1115", "billy_the_kid@nowhere.com");
+        HTDS.addEntry("H.", "Houdini", "555-235-1116", "houdini@noplace.com");
+        HTDS.addEntry("Jack", "Jones", "555-235-1117", "jjones@hill.com");
+        HTDS.addEntry("Jill", "Jones", "555-235-1118", "jillj@hill.com");
+        HTDS.addEntry("John", "Doe", "555-235-1119", "jdoe@somedomain.com");
+        HTDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
 //        Lookup Pat Jones
 //        Lookup Billy Kidd
 //        Delete John Doe
