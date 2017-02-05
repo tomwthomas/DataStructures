@@ -44,11 +44,14 @@ public class HashTableDataStructure {
         // get the key index based on the key
         int index = getKeyIndex(key);
 
+        System.out.println("looking for index:" + index);
+
         // check the hash location in the phoneEntries object so see if there is an entry here or not
         if(phoneEntries[index] != null) { // found a potential match, check and if so remove it, otherwise traverse chain until end or a match is detected
             System.out.println("found a potential key match");
             // check to see if the current node is the key I'm looking for
-            if(phoneEntries[index].getKey() == key) {
+            System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
+            if(phoneEntries[index].getKey().equals(key)) {
                 System.out.println("found a matching key");
                 if(phoneEntries[index].getNextNode() != null) {
                     System.out.println("this entry has a chain after it");
@@ -56,6 +59,22 @@ public class HashTableDataStructure {
                 else {
                     phoneEntries[index] = null;
                     System.out.println("removed entry - had no chain");
+                }
+            }
+            else { // not the right key so see if there is a tail and if it is a match - this begs for recursion!
+                System.out.println("in else statement of remove entry");
+                if(phoneEntries[index].getNextNode() != null) {
+                    Node nextNode = phoneEntries[index].getNextNode();
+                    if(nextNode.getKey().equals(key)) {
+                        System.out.println("found a matching key");
+                        if(phoneEntries[index].getNextNode() != null) {
+                            System.out.println("this entry has a chain after it");
+                        }
+                        else {
+                            phoneEntries[index] = null;
+                            System.out.println("removed entry - had no chain");
+                        }
+                    }
                 }
             }
             // if so, check if it has a chain following it
