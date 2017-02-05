@@ -8,7 +8,7 @@ public class DataStructures
         // instantiate Hash Table Data Structure object
         HashTableDataStructure HTDS = new HashTableDataStructure();
 
-        // TWT:  Begin test cases for Hash Table Data Structure (HTDS)
+        // Begin test cases for Hash Table Data Structure (HTDS)
         HTDS.addEntry("Bob", "Smith", "555-235-1111", "bsmith@somewhere.com");
         HTDS.addEntry("Jane", "Williams", "555-235-1112", "jw@something.com");
         HTDS.addEntry("Mohammed", "al-Salam", "555-235-1113", "mas@someplace.com");
@@ -19,23 +19,25 @@ public class DataStructures
         HTDS.addEntry("Jill", "Jones", "555-235-1118", "jillj@hill.com");
         HTDS.addEntry("John", "Doe", "555-235-1119", "jdoe@somedomain.com");
         HTDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
-//        Lookup Pat Jones
+        HTDS.lookupEntry("Pat", "Jones");
 //        Lookup Billy Kidd
         HTDS.removeEntry("John", "Doe");
-//        Insert Test Case 555-235-1121 Test_Case@testcase.com
-//        Insert Nadezhda Kanachekhovskaya 555-235-1122 dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru
-//        Insert Jo Wu 555-235-1123 wu@h.com
-//        Insert Millard Fillmore 555-235-1124 millard@theactualwhitehouse.us
-//        Insert Bob vanDyke 555-235-1125 vandyke@nodomain.com
-//        Insert Upside Down 555-235-1126 upsidedown@rightsideup.com
+        HTDS.addEntry("Test", "Case", "555-235-1121", "Test_Case@testcase.com");
+        HTDS.addEntry("Nadezhda", "Kanachekhovskaya", "555-235-1122", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru");
+        HTDS.addEntry("Jo", "Wu", "555-235-1123", "wu@h.com");
+        HTDS.addEntry("Millard", "Fillmore", "555-235-1124", "millard@theactualwhitehouse.us");
+        HTDS.addEntry("Bob", "vanDyke", "555-235-1125", "vandyke@nodomain.com");
+        HTDS.addEntry("Upside", "Down", "555-235-1126", "upsidedown@rightsideup.com");
 //        Lookup Jack Jones
 //        Lookup Nadezhda Kanachekhovskaya
-//        Delete Jill Jones
-//        Delete John Doe
+        HTDS.removeEntry("Jill", "Jones");
+        HTDS.removeEntry("John", "Doe");
 //        Lookup Jill Jones (What should happen if the “lookup” message doesn’t find the entry?)
 //        Lookup John Doe
+        // End test cases for Hash Table Data Structures (HTDS)
 
-        // TWT:  Begin test cases for Tree Data Structure (TDS)
+
+        // Begin test cases for Tree Data Structure (TDS)
 //        Insert Bob Smith 555-235-1111 bsmith@somewhere.com
 //        Insert Jane Williams 555-235-1112 jw@something.com
 //        Insert Mohammed al-Salam 555-235-1113 mas@someplace.com
@@ -61,6 +63,7 @@ public class DataStructures
 //        Delete John Doe
 //        Lookup Jill Jones (What should happen if the “lookup” message doesn’t find the entry?)
 //        Lookup John Doe
+        // end test cases for Tree Data Structure (TDS)
 
         System.out.println("good bye world!");
 

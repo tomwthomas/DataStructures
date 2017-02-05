@@ -12,7 +12,7 @@ public class HashTableDataStructure {
     }
 
     // This method adds a new entry to the hashtable.  If the spot of the key is already taken then it chains entries off of the first bucket.
-    public void addEntry(String firstName, String lastName, String phoneNumber, String emailAddress){
+    public void addEntry(String firstName, String lastName, String phoneNumber, String emailAddress) {
         // get the key of the data to be inserted
         String key = generateKey(firstName, lastName);
 
@@ -84,50 +84,55 @@ public class HashTableDataStructure {
                         nextNode = nextNode.getNextNode(); // will be null if there are no more links in the chain
                 }
 
-                System.out.println("in else statement, nextNode now set to:" + nextNode.getKey());
+                System.out.println("in else statement, nextNode now set...");
             }
-
-
-
-
-/*            if(phoneEntries[index].getKey().equals(key)) {
-                System.out.println("found a matching key");
-                if(phoneEntries[index].getNextNode() != null) {
-                    System.out.println("this entry has a chain after it");
-                    phoneEntries[index] = phoneEntries[index].getNextNode();  // since we have a chain after this entry, move it left one notch
-                }
-                else { // this entry has no chain so we are clear to delete it
-                    phoneEntries[index] = null;
-                    System.out.println("removed entry - had no chain");
-                }
-            }
-            else { // not the right key so see if there is a tail and if it is a match - this begs for recursion!
-                System.out.println("in else statement of remove entry");
-                if(phoneEntries[index].getNextNode() != null) {
-                    Node nextNode = phoneEntries[index].getNextNode();
-                    if(nextNode.getKey().equals(key)) {
-                        System.out.println("found a matching key");
-                        if(phoneEntries[index].getNextNode() != null) {
-                            System.out.println("this entry has a chain after it");
-                        }
-                        else {
-                              phoneEntries[index] = null;
-                            System.out.println("removed entry - had no chain");
-                        }
-                    }
-                }
-            }*/
-
         }
         else { // no match was found at the expected hash location so do nothing
            System.out.println("no match found");
         }
     }
 
-    public String lookupEntry() {
+    public void lookupEntry(String firstName, String lastName) {
+        // set a found match flag
+        boolean foundMatch = false;
 
+        // generate the key of the data to be found
+        String key = generateKey(firstName, lastName);
 
-        return null;
+        // get the key index based on the key - if it did exist
+        int index = getKeyIndex(key);
+
+        // check the hash location in the phoneEntries object so see if there is an entry here or not
+        if(phoneEntries[index] != null) { // found a potential match, check and if so print it out, otherwise traverse chain until end or a match is detected
+            System.out.println("found a potential key match in LOOKUP");
+            // check to see if the current node is the key I'm looking for
+            System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
+
+            // check to see if the current entry is the one we are looking for
+            Node currentNode = phoneEntries[index];
+            Node nextNode = currentNode.getNextNode();
+            if(currentNode.getKey().equals(key)) { // we found the entry we are looking for so write it out
+                foundMatch = true;
+                System.out.println("TODO:  write out phoneEntry that was found here via a private method to be created");
+            }
+            else { // we have an entry but not a key match yet, go through the chain if there is one
+                while(nextNode != null) {
+                    // check to see if the next node has the value we want to return
+                    if(nextNode.getKey().equals(key)) { // we found the entry we are looking for
+                        // since the next node has the value we want, write it out
+                        foundMatch = true;
+                        System.out.println("TODO:  write out phoneEntry that was found here via a private method to be created");
+                        break; // since we found the requested entry break out of the loop - we are not alerting on multiple finds
+                    }
+                    else // we did not yet find the entry we are looking for so move to the next link in the chain if it exists
+                        nextNode = nextNode.getNextNode(); // will be null if there are no more links in the chain
+                }
+            }
+        }
+
+        if(!foundMatch) { // no match was ever found so tell the user that
+            System.out.println("no match found");
+        }
     }
 
     private String generateKey(String firstName, String lastName) {
@@ -147,24 +152,4 @@ public class HashTableDataStructure {
         return index;
     }
 
-    private Node adjustChainForDelete(Node currentNode, String desiredKey) { // this may become my lookup function!!
-
-        Node nextNode = currentNode.getNextNode(); // defaults to null if there are no entries following this one
-        if( nextNode != null) {
-            if(nextNode.getKey().equals(desiredKey)) {
-                System.out.println("found a matching key");
-                if(nextNode != null) {
-                    System.out.println("this entry has a chain after it");
-                    // phoneEntries[index] = phoneEntries[index].getNextNode();  // since we have a chain after this entry, move it left one notch
-                }
-                else {
-                    // we are at the correct entry
-                    // phoneEntries[index] = null;
-                    System.out.println("removed entry - had no chain");
-                }
-            }
-        }
-
-        return nextNode;
-    }
 }
