@@ -19,6 +19,10 @@ public class PhoneEntry {
         setEmailAddress(emailAddress);
     }
 
+    public void printPhoneEntry() {
+        System.out.println("first name: " + getFirstName() + ", last name: " + getLastName());
+    }
+
     public String getFirstName() {
         return firstName;
     }

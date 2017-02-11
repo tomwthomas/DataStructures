@@ -3,7 +3,7 @@ public class DataStructures
     public static void main(String[] args)
     {
 
-        System.out.println("hello world!");
+        // System.out.println("hello world!");
 
         // instantiate Hash Table Data Structure object
         HashTableDataStructure HTDS = new HashTableDataStructure();
@@ -20,7 +20,7 @@ public class DataStructures
         HTDS.addEntry("John", "Doe", "555-235-1119", "jdoe@somedomain.com");
         HTDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
         HTDS.lookupEntry("Pat", "Jones");
-//        Lookup Billy Kidd
+        HTDS.lookupEntry("Billy", "Kidd");
         HTDS.removeEntry("John", "Doe");
         HTDS.addEntry("Test", "Case", "555-235-1121", "Test_Case@testcase.com");
         HTDS.addEntry("Nadezhda", "Kanachekhovskaya", "555-235-1122", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru");
@@ -28,12 +28,12 @@ public class DataStructures
         HTDS.addEntry("Millard", "Fillmore", "555-235-1124", "millard@theactualwhitehouse.us");
         HTDS.addEntry("Bob", "vanDyke", "555-235-1125", "vandyke@nodomain.com");
         HTDS.addEntry("Upside", "Down", "555-235-1126", "upsidedown@rightsideup.com");
-//        Lookup Jack Jones
-//        Lookup Nadezhda Kanachekhovskaya
+        HTDS.lookupEntry("Jack", "Jones");
+        HTDS.lookupEntry("Nadezhda", "Kanachekhovskaya");
         HTDS.removeEntry("Jill", "Jones");
         HTDS.removeEntry("John", "Doe");
-//        Lookup Jill Jones (What should happen if the “lookup” message doesn’t find the entry?)
-//        Lookup John Doe
+        HTDS.lookupEntry("Jill", "Jones"); //  (What should happen if the “lookup” message doesn’t find the entry?)
+        HTDS.lookupEntry("John", "Doe");
         // End test cases for Hash Table Data Structures (HTDS)
 
 
@@ -65,7 +65,7 @@ public class DataStructures
 //        Lookup John Doe
         // end test cases for Tree Data Structure (TDS)
 
-        System.out.println("good bye world!");
+        // System.out.println("good bye world!");
 
     }
 }

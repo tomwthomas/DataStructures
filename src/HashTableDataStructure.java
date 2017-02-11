@@ -25,14 +25,14 @@ public class HashTableDataStructure {
 
         // check the hash location in the phoneEntries object so see if there is already an entry here
        if(phoneEntries[index] != null) { // spot already occupied - find the end of the chain, and add this entry as a new node
-            System.out.println("already filled!");
+            // System.out.println("already filled!");
             phoneEntries[index].setNextNode(newNode);
-            System.out.println("added to end of chain: " + phoneEntries[index].getNextNode().getValue().getFirstName());
+            // System.out.println("added to end of chain: " + phoneEntries[index].getNextNode().getValue().getFirstName());
         }
         else { // since we don't yet have an entry here, then add this new entry as a new node
-            System.out.println("found an empty spot!");
+            // System.out.println("found an empty spot!");
             phoneEntries[index] = newNode;
-            System.out.println("added new bucket:" + phoneEntries[index].getValue().getFirstName());
+            // System.out.println("added new bucket:" + phoneEntries[index].getValue().getFirstName());
         }
     }
 
@@ -46,9 +46,9 @@ public class HashTableDataStructure {
 
          // check the hash location in the phoneEntries object so see if there is an entry here or not
         if(phoneEntries[index] != null) { // found a potential match, check and if so remove it, otherwise traverse chain until end or a match is detected
-            System.out.println("found a potential key match");
+            // System.out.println("found a potential key match");
             // check to see if the current node is the key I'm looking for
-            System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
+            // System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
 
             // check to see if the current entry is the one we are looking for
             Node currentNode = phoneEntries[index];
@@ -60,7 +60,7 @@ public class HashTableDataStructure {
                 else
                     phoneEntries[index] = null;
 
-                System.out.println("next node is now set after a delete in main if statement...");
+                // System.out.println("next node is now set after a delete in main if statement...");
             }
             else { // we have an entry but not a key match, go through the chain if there is one
                 // loop over the chain until we find a match
@@ -84,7 +84,7 @@ public class HashTableDataStructure {
                         nextNode = nextNode.getNextNode(); // will be null if there are no more links in the chain
                 }
 
-                System.out.println("in else statement, nextNode now set...");
+                // System.out.println("in else statement, nextNode now set...");
             }
         }
         else { // no match was found at the expected hash location so do nothing
@@ -104,16 +104,16 @@ public class HashTableDataStructure {
 
         // check the hash location in the phoneEntries object so see if there is an entry here or not
         if(phoneEntries[index] != null) { // found a potential match, check and if so print it out, otherwise traverse chain until end or a match is detected
-            System.out.println("found a potential key match in LOOKUP");
+            // System.out.println("found a potential key match in LOOKUP");
             // check to see if the current node is the key I'm looking for
-            System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
+            // System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
 
             // check to see if the current entry is the one we are looking for
             Node currentNode = phoneEntries[index];
             Node nextNode = currentNode.getNextNode();
             if(currentNode.getKey().equals(key)) { // we found the entry we are looking for so write it out
                 foundMatch = true;
-                System.out.println("TODO:  write out phoneEntry that was found here via a private method to be created");
+                currentNode.getValue().printPhoneEntry(); // write out the phoneEntry that was found
             }
             else { // we have an entry but not a key match yet, go through the chain if there is one
                 while(nextNode != null) {
@@ -121,7 +121,7 @@ public class HashTableDataStructure {
                     if(nextNode.getKey().equals(key)) { // we found the entry we are looking for
                         // since the next node has the value we want, write it out
                         foundMatch = true;
-                        System.out.println("TODO:  write out phoneEntry that was found here via a private method to be created");
+                        nextNode.getValue().printPhoneEntry(); // write out phoneEntry that was found
                         break; // since we found the requested entry break out of the loop - we are not alerting on multiple finds
                     }
                     else // we did not yet find the entry we are looking for so move to the next link in the chain if it exists
@@ -131,13 +131,13 @@ public class HashTableDataStructure {
         }
 
         if(!foundMatch) { // no match was ever found so tell the user that
-            System.out.println("no match found");
+            System.out.println("no match found for: " + firstName + " " + lastName);
         }
     }
 
     private String generateKey(String firstName, String lastName) {
         String key = (firstName + lastName).toUpperCase();
-        System.out.println("hash: " + key.hashCode());
+        // System.out.println("hash: " + key.hashCode());
 
         return key;
     }
@@ -147,7 +147,7 @@ public class HashTableDataStructure {
         int index = key.toUpperCase().hashCode()%13;
         if(index < 0)
             index = -index;
-        System.out.println("modHash:" + index);
+        // System.out.println("modHash:" + index);
 
         return index;
     }
