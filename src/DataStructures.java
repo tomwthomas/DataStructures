@@ -36,27 +36,29 @@ public class DataStructures
         HTDS.lookupEntry("John", "Doe");
         // End test cases for Hash Table Data Structures (HTDS)
 
+        // instantiate Tree Data Structure object
+        TreeDataStructure TDS = new TreeDataStructure();
 
         // Begin test cases for Tree Data Structure (TDS)
-//        Insert Bob Smith 555-235-1111 bsmith@somewhere.com
-//        Insert Jane Williams 555-235-1112 jw@something.com
-//        Insert Mohammed al-Salam 555-235-1113 mas@someplace.com
-//        Insert Pat Jones 555-235-1114 pjones@homesweethome.com
-//        Insert Billy Kidd 555-235-1115 billy_the_kid@nowhere.com
-//        Insert H. Houdini 555-235-1116 houdini@noplace.com
-//        Insert Jack Jones 555-235-1117 jjones@hill.com
-//        Insert Jill Jones 555-235-1118 jillj@hill.com
-//        Insert John Doe 555-235-1119 jdoe@somedomain.com
-//        Insert Jane Doe 555-235-1120 jdoe@somedomain.com
+        TDS.addEntry("Bob", "Smith", "555-235-1111", "bsmith@somewhere.com");
+        TDS.addEntry("Jane", "Williams", "555-235-1112", "jw@something.com");
+        TDS.addEntry("Mohammed", "al-Salam", "555-235-1113", "mas@someplace.com");
+        TDS.addEntry("Pat", "Jones", "555-235-1114", "pjones@homesweethome.com");
+        TDS.addEntry("Billy", "Kidd", "555-235-1115", "billy_the_kid@nowhere.com");
+        TDS.addEntry("H.", "Houdini", "555-235-1116", "houdini@noplace.com");
+        TDS.addEntry("Jack", "Jones", "555-235-1117", "jjones@hill.com");
+        TDS.addEntry("Jill", "Jones", "555-235-1118", "jillj@hill.com");
+        TDS.addEntry("John", "Doe", "555-235-1119", "jdoe@somedomain.com");
+        TDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
 //        Lookup Pat Jones
 //        Lookup Billy Kidd
 //        Delete John Doe
-//        Insert Test Case 555-235-1121 Test_Case@testcase.com
-//        Insert Nadezhda Kanachekhovskaya 555-235-1122 dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru
-//        Insert Jo Wu 555-235-1123 wu@h.com
-//        Insert Millard Fillmore 555-235-1124 millard@theactualwhitehouse.us
-//        Insert Bob vanDyke 555-235-1125 vandyke@nodomain.com
-//        Insert Upside Down 555-235-1126 upsidedown@rightsideup.com
+        TDS.addEntry("Test", "Case", "555-235-1121", "Test_Case@testcase.com");
+        TDS.addEntry("Nadezhda", "Kanachekhovskaya", "555-235-1122", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru");
+        TDS.addEntry("Jo", "Wu", "555-235-1123", "wu@h.com");
+        TDS.addEntry("Millard", "Fillmore", "555-235-1124", "millard@theactualwhitehouse.us");
+        TDS.addEntry("Bob", "vanDyke", "555-235-1125", "vandyke@nodomain.com");
+        TDS.addEntry("Upside", "Down", "555-235-1126", "upsidedown@rightsideup.com");
 //        Lookup Jack Jones
 //        Lookup Nadezhda Kanachekhovskaya
 //        Delete Jill Jones
