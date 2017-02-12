@@ -97,6 +97,7 @@ public class TreeDataStructure {
             }
         }
 
+        // TODO:  rework this!!  tree structures do not need to search they should be almost a direct find!
         while(!removedEntry && !endOfTree) {
             Node rightNode = currentNode.getNextNode();
             Node leftNode = currentNode.getPreviousNode();
@@ -128,28 +129,18 @@ public class TreeDataStructure {
     }
 
     private void printEntireTDSLoop(Node currentNode) {
-        // go all the way right
-        // if can't go any farther right print it
-        // go up one and print it
-        // go left one and then all the way down on the right again
-        // print it and then go back up one and print it, repeat
+        // go all the way left
+        // if can't go any farther left print it
+        // go right and repeat
+        // if can't go right, go up one and repeat
 
-        boolean printedAlready = false;
-        Node nextNode = getNextOccupiedNode(currentNode);
+        if(currentNode.getPreviousNode() != null)
+            printEntireTDSLoop(currentNode.getPreviousNode());
 
-        if(nextNode == null) {  // if there are no more entries on this branch print this entry
-            System.out.println(currentNode.getKey());
-            printedAlready = true;
-        }
-        else
-            printEntireTDSLoop(nextNode); // if nextNode is not null then go there
+        System.out.println(currentNode.getKey());
 
-        if(!printedAlready) { // will print out this entry as it uncoils the recursion if it hasn't already been printed
-            System.out.println(currentNode.getKey());
-            nextNode = getNextOccupiedNode(currentNode); // ensure we can't go left after going all the way right
-            if (nextNode != null)
-                printEntireTDSLoop(nextNode);
-        }
+        if(currentNode.getNextNode() != null)
+            printEntireTDSLoop(currentNode.getNextNode());
     }
 
     private String generateKey(String firstName, String lastName) {
