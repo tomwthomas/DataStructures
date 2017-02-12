@@ -52,7 +52,7 @@ public class DataStructures
         TDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
 //        Lookup Pat Jones
 //        Lookup Billy Kidd
-//        Delete John Doe
+        TDS.removeEntry("John", "Doe");
         TDS.addEntry("Test", "Case", "555-235-1121", "Test_Case@testcase.com");
         TDS.addEntry("Nadezhda", "Kanachekhovskaya", "555-235-1122", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru");
         TDS.addEntry("Jo", "Wu", "555-235-1123", "wu@h.com");
@@ -61,11 +61,12 @@ public class DataStructures
         TDS.addEntry("Upside", "Down", "555-235-1126", "upsidedown@rightsideup.com");
 //        Lookup Jack Jones
 //        Lookup Nadezhda Kanachekhovskaya
-//        Delete Jill Jones
-//        Delete John Doe
+        TDS.removeEntry("Jill", "Jones");
+        TDS.removeEntry("John", "Doe");
 //        Lookup Jill Jones (What should happen if the “lookup” message doesn’t find the entry?)
 //        Lookup John Doe
         // end test cases for Tree Data Structure (TDS)
+        TDS.printEntireTDS();
 
         // System.out.println("good bye world!");
 

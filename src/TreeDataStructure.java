@@ -65,82 +65,92 @@ public class TreeDataStructure {
     // This method removes an entry from the tree based on the first and last name (key) submitted.
     public void removeEntry(String firstName, String lastName) {
 
-        // start at the root
-        // compare the current key to the new key
-        // if we have a match begin the delete process
-            // if there is a right node set root to it
-            // else, if there is a left node, set the root to it
-            // else blank the key to reset the root
-        // if we did not find a match, check to see if the requested key is larger than root - go right if so
-            // if the right key is a match begin the delete process (see above for how root did it)
-            // else, move right one step and repeat the search
-        // since the requested key is smaller, check the left key for a match
-            // if the left key is a match begin the delete process (see above for how root did it)
-            // else, move left one step and repeat the search
-        // if we hit the end and we never did a delete, tell the user no match was found
-
-
-
-
-
-
-
         // get the key of the data to be inserted
         String key = generateKey(firstName, lastName);
 
+        // set our control flags
+        boolean removedEntry = false;
+        boolean endOfTree = false;
 
+        // setup our temp storage nodes - used for moving items around in the tree
+        Node currentNode = rootNode;
+        Node orphanedNode = null;
 
+        // check to see if the rootNode is the key we want to delete
+        if(rootNode.getKey().equals(key)) { // if the root has the key we want to delete do so
+            if(rootNode.getNextNode() != null) { // check to see if we have a right node to move up
+                orphanedNode = rootNode.getPreviousNode(); // temporarily store the left node so it does not get orphaned
+                rootNode = rootNode.getNextNode();
+                reAddNode(orphanedNode);
+                removedEntry = true;
+            }
+            else if (rootNode.getPreviousNode() != null) { // check to see if we have a left node to move up
+                // when moving up a left node there are no orphans as it brings its right and left branches with it
+                rootNode = rootNode.getPreviousNode();
+                removedEntry = true;
+            }
+            else { // root has no branches so blank it out
+                rootNode.setNextNode(null);
+                rootNode.setPreviousNode(null);
+                rootNode.setKey("");
+                removedEntry = true;
+            }
+        }
 
+        while(!removedEntry && !endOfTree) {
+            Node rightNode = currentNode.getNextNode();
+            Node leftNode = currentNode.getPreviousNode();
+            if(rightNode != null &&  rightNode.getKey().equals(key)) { // check if the right branch has the key we are looking to delete
+                removedEntry = shiftNodesUp(currentNode, rightNode);
+                System.out.println("removed right branch and moved up");
+            }
+            else if(leftNode != null && leftNode.getKey().equals(key)) { // check if the left branch has the key we are looking to delete
+                removedEntry = shiftNodesUp(currentNode, leftNode);
+                System.out.println("removed left branch and moved up");
+            }
 
+            // if we haven't yet found a match, move to the next spot in the tree to check and set endOfTree if appropriate
+            if(!removedEntry) {
+                currentNode = getNextOccupiedNode(currentNode);
+                if (currentNode == null)
+                    endOfTree = true;
+            }
+        }
 
-//        // check the hash location in the phoneEntries object so see if there is an entry here or not
-//        if(phoneEntries[index] != null) { // found a potential match, check and if so remove it, otherwise traverse chain until end or a match is detected
-//            // System.out.println("found a potential key match");
-//            // check to see if the current node is the key I'm looking for
-//            // System.out.println("got this key:" + phoneEntries[index].getKey() + " and was looking for:" + key);
-//
-//            // check to see if the current entry is the one we are looking for
-//            Node currentNode = phoneEntries[index];
-//            Node nextNode = currentNode.getNextNode();
-//            if(currentNode.getKey().equals(key)) { // we found the entry we are looking for
-//                // check to see if this entry has a chain and if so, move it left, otherwise null out this entry
-//                if(nextNode != null)
-//                    phoneEntries[index] = nextNode;
-//                else
-//                    phoneEntries[index] = null;
-//
-//                // System.out.println("next node is now set after a delete in main if statement...");
-//            }
-//            else { // we have an entry but not a key match, go through the chain if there is one
-//                // loop over the chain until we find a match
-//                // when we find a match, null it out, if there is a chain, make the next entry the tail of the tail
-//                // potential use cases:
-//                // miss, hit, something not null (at some length) - point miss at something not null
-//                // miss, hit, null - point miss at null
-//                // miss, null - no match found, do nothing
-//                // hit, null - taken care of above in the original if statement
-//                // null - no match found, do nothing
-//
-//                // since it is not the first position all we really care about is the nextNode pointer irregardless of the array itself
-//                while(nextNode != null) {
-//                    // check to see if the next node has the value we want to delete
-//                    if(nextNode.getKey().equals(key)) { // we found the entry we are looking for
-//                        // since the next node has the value we want to delete assign it's next node to the current nodes next node and essentially drop the next node from the chain
-//                        currentNode.setNextNode(nextNode.getNextNode()); // this works because we don't care what the value is - null or otherwise
-//                        break; // since we deleted the requested entry break out of the loop
-//                    }
-//                    else // we did not yet find the entry we are looking for so move to the next link in the chain if it exists
-//                        nextNode = nextNode.getNextNode(); // will be null if there are no more links in the chain
-//                }
-//
-//                // System.out.println("in else statement, nextNode now set...");
-//            }
-//        }
-//        else { // no match was found at the expected hash location so do nothing
-//            System.out.println("no match found");
-//        }
+        if(!removedEntry) {
+            System.out.println("no match found to delete for: " + firstName + " " + lastName);
+        }
+
     }
 
+    public void printEntireTDS() {
+        printEntireTDSLoop(rootNode);
+    }
+
+    private void printEntireTDSLoop(Node currentNode) {
+        // go all the way right
+        // if can't go any farther right print it
+        // go up one and print it
+        // go left one and then all the way down on the right again
+        // print it and then go back up one and print it, repeat
+
+        boolean printedAlready = false;
+        Node nextNode = getNextOccupiedNode(currentNode);
+
+        if(nextNode == null) {  // if there are no more entries on this branch print this entry
+            System.out.println(currentNode.getKey());
+            printedAlready = true;
+        }
+        else
+            printEntireTDSLoop(nextNode); // if nextNode is not null then go there
+
+        if(!printedAlready) { // will print out this entry as it uncoils the recursion if it hasn't already been printed
+            System.out.println(currentNode.getKey());
+            nextNode = getNextOccupiedNode(currentNode); // ensure we can't go left after going all the way right
+            if (nextNode != null)
+                printEntireTDSLoop(nextNode);
+        }
+    }
 
     private String generateKey(String firstName, String lastName) {
         String key = (firstName + lastName).toUpperCase();
@@ -148,6 +158,41 @@ public class TreeDataStructure {
         return key;
     }
 
+    private Node getNextOccupiedNode(Node currentNode) {
+        Node nextOccupiedNode = null;  // return null if there is no next node with a value
 
+        if(currentNode.getNextNode() != null)
+            nextOccupiedNode = currentNode.getNextNode();
+        else if (currentNode.getPreviousNode() != null)
+            nextOccupiedNode = currentNode.getPreviousNode();
+
+        return nextOccupiedNode;
+    }
+
+    private boolean shiftNodesUp (Node parentNode, Node childNode) {
+        boolean removedEntry = false;
+        Node orphanedNode = null;
+
+        if (childNode.getNextNode() != null) { // check to see if we have a right node to move up
+            orphanedNode = childNode.getPreviousNode(); // temporarily store the left node so it does not get orphaned
+            parentNode.setNextNode(childNode.getNextNode());
+            reAddNode(orphanedNode);
+            removedEntry = true;
+        } else if (childNode.getPreviousNode() != null) { // check to see if we have a left node to move up
+            // when moving up a left node there are no orphans as it brings its right and left branches with it
+            parentNode.setNextNode(childNode.getPreviousNode());
+            removedEntry = true;
+        }
+        else { // otherwise we have no nodes to move up so simply null out the right branch pointer of the parent
+            parentNode.setNextNode(null);
+            removedEntry = true;
+        }
+
+        return removedEntry;
+    }
+    private void reAddNode(Node nodeToAdd) { // used to readd a node that was otherwise orphaned from the delete process
+        //
+
+    }
 
 }
