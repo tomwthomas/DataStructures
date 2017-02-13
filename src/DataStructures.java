@@ -9,6 +9,7 @@ public class DataStructures
         HashTableDataStructure HTDS = new HashTableDataStructure();
 
         // Begin test cases for Hash Table Data Structure (HTDS)
+        System.out.println("Starting test pass for hash table data structure....");
         HTDS.addEntry("Bob", "Smith", "555-235-1111", "bsmith@somewhere.com");
         HTDS.addEntry("Jane", "Williams", "555-235-1112", "jw@something.com");
         HTDS.addEntry("Mohammed", "al-Salam", "555-235-1113", "mas@someplace.com");
@@ -34,12 +35,17 @@ public class DataStructures
         HTDS.removeEntry("John", "Doe");
         HTDS.lookupEntry("Jill", "Jones"); //  (What should happen if the “lookup” message doesn’t find the entry?)
         HTDS.lookupEntry("John", "Doe");
+        System.out.println("Ending test pass for hash table data structure....");
         // End test cases for Hash Table Data Structures (HTDS)
 
         // instantiate Tree Data Structure object
         TreeDataStructure TDS = new TreeDataStructure();
 
         // Begin test cases for Tree Data Structure (TDS)
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("Starting test pass for tree data structure....");
         TDS.addEntry("Bob", "Smith", "555-235-1111", "bsmith@somewhere.com");
         TDS.addEntry("Jane", "Williams", "555-235-1112", "jw@something.com");
         TDS.addEntry("Mohammed", "al-Salam", "555-235-1113", "mas@someplace.com");
@@ -50,8 +56,8 @@ public class DataStructures
         TDS.addEntry("Jill", "Jones", "555-235-1118", "jillj@hill.com");
         TDS.addEntry("John", "Doe", "555-235-1119", "jdoe@somedomain.com");
         TDS.addEntry("Jane", "Doe", "555-235-1120", "jdoe@somedomain.com");
-//        Lookup Pat Jones
-//        Lookup Billy Kidd
+        TDS.lookupEntry("Pat", "Jones");
+        TDS.lookupEntry("Billy", "Kidd");
         TDS.removeEntry("John", "Doe");
         TDS.addEntry("Test", "Case", "555-235-1121", "Test_Case@testcase.com");
         TDS.addEntry("Nadezhda", "Kanachekhovskaya", "555-235-1122", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru");
@@ -59,14 +65,14 @@ public class DataStructures
         TDS.addEntry("Millard", "Fillmore", "555-235-1124", "millard@theactualwhitehouse.us");
         TDS.addEntry("Bob", "vanDyke", "555-235-1125", "vandyke@nodomain.com");
         TDS.addEntry("Upside", "Down", "555-235-1126", "upsidedown@rightsideup.com");
-//        Lookup Jack Jones
-//        Lookup Nadezhda Kanachekhovskaya
+        TDS.lookupEntry("Jack", "Jones");
+        TDS.lookupEntry("Nadezhda", "Kanachekhovskaya");
         TDS.removeEntry("Jill", "Jones");
         TDS.removeEntry("John", "Doe");
-//        Lookup Jill Jones (What should happen if the “lookup” message doesn’t find the entry?)
-//        Lookup John Doe
+        TDS.lookupEntry("Jill", "Jones"); // (What should happen if the “lookup” message doesn’t find the entry?)
+        TDS.lookupEntry("John", "Doe");
+        System.out.println("Ending test pass for tree data structure....");
         // end test cases for Tree Data Structure (TDS)
-        TDS.printEntireTDS();
 
         // System.out.println("good bye world!");
 

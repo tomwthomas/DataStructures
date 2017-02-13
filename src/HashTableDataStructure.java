@@ -44,6 +44,9 @@ public class HashTableDataStructure {
         // get the key index based on the key
         int index = getKeyIndex(key);
 
+        // set control flag
+        boolean removedEntry = false;
+
          // check the hash location in the phoneEntries object so see if there is an entry here or not
         if(phoneEntries[index] != null) { // found a potential match, check and if so remove it, otherwise traverse chain until end or a match is detected
             // System.out.println("found a potential key match");
@@ -60,6 +63,7 @@ public class HashTableDataStructure {
                 else
                     phoneEntries[index] = null;
 
+                removedEntry = true;
                 // System.out.println("next node is now set after a delete in main if statement...");
             }
             else { // we have an entry but not a key match, go through the chain if there is one
@@ -78,6 +82,7 @@ public class HashTableDataStructure {
                     if(nextNode.getKey().equals(key)) { // we found the entry we are looking for
                         // since the next node has the value we want to delete assign it's next node to the current nodes next node and essentially drop the next node from the chain
                         currentNode.setNextNode(nextNode.getNextNode()); // this works because we don't care what the value is - null or otherwise
+                        removedEntry = true;
                         break; // since we deleted the requested entry break out of the loop
                     }
                     else // we did not yet find the entry we are looking for so move to the next link in the chain if it exists
@@ -87,8 +92,9 @@ public class HashTableDataStructure {
                 // System.out.println("in else statement, nextNode now set...");
             }
         }
-        else { // no match was found at the expected hash location so do nothing
-           System.out.println("no match found");
+
+        if(!removedEntry) { // no match was found at the expected hash location so alert not found
+           System.out.println("no match found to delete for: " + firstName + " " + lastName);
         }
     }
 
