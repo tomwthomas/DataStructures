@@ -62,9 +62,7 @@ public class TreeDataStructure {
         }
     }
 
-    // This method removes an entry from the tree based on the first and last name (key) submitted.
-    public void removeEntry(String firstName, String lastName) {
-
+    public  void removeEntry(String firstName, String lastName) {
         // get the key of the data to be inserted
         String key = generateKey(firstName, lastName);
 
@@ -97,22 +95,29 @@ public class TreeDataStructure {
             }
         }
 
-        // TODO:  rework this!!  tree structures do not need to search they should be almost a direct find!
         while(!removedEntry && !endOfTree) {
             Node rightNode = currentNode.getNextNode();
             Node leftNode = currentNode.getPreviousNode();
-            if(rightNode != null &&  rightNode.getKey().equals(key)) { // check if the right branch has the key we are looking to delete
-                removedEntry = shiftNodesUp(currentNode, rightNode);
-                System.out.println("removed right branch and moved up");
+            Node nextNodeToCheck = null;
+
+            if(currentNode.getKey().compareTo(key) <= 0) {  // the key to delete is larger or equivalent to the current node so check the right side of the tree
+                nextNodeToCheck = rightNode; // if we don't find a match set the direction to check next
+                if (rightNode != null && rightNode.getKey().equals(key)) { // check if the right branch has the key we are looking to delete
+                    removedEntry = shiftNodesUp(currentNode, rightNode, true);
+                    System.out.println("removed right branch and moved up");
+                }
             }
-            else if(leftNode != null && leftNode.getKey().equals(key)) { // check if the left branch has the key we are looking to delete
-                removedEntry = shiftNodesUp(currentNode, leftNode);
-                System.out.println("removed left branch and moved up");
+            else { // otherwise the key for the entry to delete is smaller than the current node so check the left side of the tree
+                nextNodeToCheck = leftNode; // if we don't find a match set the direction to check next
+                if (leftNode != null && leftNode.getKey().equals(key)) { // check if the left branch has the key we are looking to delete
+                        removedEntry = shiftNodesUp(currentNode, leftNode, false);
+                        System.out.println("removed left branch and moved up");
+                }
             }
 
             // if we haven't yet found a match, move to the next spot in the tree to check and set endOfTree if appropriate
             if(!removedEntry) {
-                currentNode = getNextOccupiedNode(currentNode);
+                currentNode = nextNodeToCheck;
                 if (currentNode == null)
                     endOfTree = true;
             }
@@ -121,10 +126,10 @@ public class TreeDataStructure {
         if(!removedEntry) {
             System.out.println("no match found to delete for: " + firstName + " " + lastName);
         }
-
     }
 
     public void printEntireTDS() {
+        System.out.println("-------------- starting new tree dump -------------");
         printEntireTDSLoop(rootNode);
     }
 
@@ -160,22 +165,34 @@ public class TreeDataStructure {
         return nextOccupiedNode;
     }
 
-    private boolean shiftNodesUp (Node parentNode, Node childNode) {
+    private boolean shiftNodesUp (Node parentNode, Node childNode, boolean shiftRightSide) {
         boolean removedEntry = false;
         Node orphanedNode = null;
 
+        System.out.println("parentNode: " + parentNode.getKey() + ", childNode: " + childNode.getKey());
+
         if (childNode.getNextNode() != null) { // check to see if we have a right node to move up
             orphanedNode = childNode.getPreviousNode(); // temporarily store the left node so it does not get orphaned
-            parentNode.setNextNode(childNode.getNextNode());
+            if(shiftRightSide)
+                parentNode.setNextNode(childNode.getNextNode());
+            else
+                parentNode.setPreviousNode(childNode.getNextNode());
             reAddNode(orphanedNode);
             removedEntry = true;
         } else if (childNode.getPreviousNode() != null) { // check to see if we have a left node to move up
             // when moving up a left node there are no orphans as it brings its right and left branches with it
-            parentNode.setNextNode(childNode.getPreviousNode());
+            if(shiftRightSide)
+                parentNode.setNextNode(childNode.getPreviousNode());
+            else
+                parentNode.setPreviousNode(childNode.getPreviousNode());
             removedEntry = true;
+            System.out.println("in else of shiftNodeUp");
         }
         else { // otherwise we have no nodes to move up so simply null out the right branch pointer of the parent
-            parentNode.setNextNode(null);
+            if(shiftRightSide)
+                parentNode.setNextNode(null);
+            else
+                parentNode.setPreviousNode(null);
             removedEntry = true;
         }
 
