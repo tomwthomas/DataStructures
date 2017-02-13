@@ -27,12 +27,12 @@ public class HashTableDataStructure {
        if(phoneEntries[index] != null) { // spot already occupied - find the end of the chain, and add this entry as a new node
             // System.out.println("already filled!");
             phoneEntries[index].setNextNode(newNode);
-            // System.out.println("added to end of chain: " + phoneEntries[index].getNextNode().getValue().getFirstName());
+            System.out.println("Insert added new entry to end of chain: " + phoneEntries[index].getNextNode().getKey());
         }
         else { // since we don't yet have an entry here, then add this new entry as a new node
             // System.out.println("found an empty spot!");
             phoneEntries[index] = newNode;
-            // System.out.println("added new bucket:" + phoneEntries[index].getValue().getFirstName());
+            System.out.println("Insert added new bucket: " + phoneEntries[index].getKey());
         }
     }
 
@@ -96,6 +96,8 @@ public class HashTableDataStructure {
         if(!removedEntry) { // no match was found at the expected hash location so alert not found
            System.out.println("no match found to delete for: " + firstName + " " + lastName);
         }
+        else
+            System.out.println("Delete successful for: " + firstName + " " + lastName);
     }
 
     public void lookupEntry(String firstName, String lastName) {

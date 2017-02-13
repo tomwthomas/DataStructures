@@ -20,7 +20,7 @@ public class PhoneEntry {
     }
 
     public void printPhoneEntry() {
-        System.out.println("first name: " + getFirstName() + ", last name: " + getLastName() + ", phone number: " + getPhoneNumber() + ", email: " + getEmailAddress());
+        System.out.println("Found requested entry - first name: " + getFirstName() + ", last name: " + getLastName() + ", phone number: " + getPhoneNumber() + ", email: " + getEmailAddress());
     }
 
     public String getFirstName() {

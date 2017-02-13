@@ -41,7 +41,7 @@ public class TreeDataStructure {
                 if(currentNode.getNextNode() == null) { // the nextNode is currently empty so add the new entry there and set our control flag
                     currentNode.setNextNode(newNode);
                     addedEntry = true;
-                    // System.out.println("added to right side of tree");
+                    System.out.println("Added new entry to right side of tree or a branch: " + key);
                 }
                 else { // the nextNode is currently occupied so we need to go look at it's entry to know where to put this new entry
                     currentNode = currentNode.getNextNode();
@@ -52,7 +52,7 @@ public class TreeDataStructure {
                 if(currentNode.getPreviousNode() == null) { // the previousNode is currently empty so add the new entry there and set our control flag
                     currentNode.setPreviousNode(newNode);
                     addedEntry = true;
-                    // System.out.println("added to left side of tree");
+                    System.out.println("Added new entry to left side of tree or a branch: " + key);
                 }
                 else { // the previousNode is currently occupied so we need to go look at it's entry to know where to put this new entry
                     currentNode = currentNode.getPreviousNode();
@@ -126,6 +126,8 @@ public class TreeDataStructure {
         if(!removedEntry) {
             System.out.println("no match found to delete for: " + firstName + " " + lastName);
         }
+        else
+            System.out.println("Delete successful for: " + firstName + " " + lastName);
     }
 
     public void lookupEntry(String firstName, String lastName) {
